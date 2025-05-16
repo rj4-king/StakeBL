@@ -6,7 +6,6 @@ CORS(app)
 
 @app.route('/get_balance', methods=['POST'])
 def get_balance():
-    # This always returns demo/fake balances
     balances = [
         {'amount': '1.23', 'currency': 'BTC'},
         {'amount': '400.00', 'currency': 'USDT'}
