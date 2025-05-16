@@ -11,15 +11,27 @@ def get_balance():
     if not api_key:
         return jsonify({'error': 'API Key required'}), 400
     try:
-        stake = Stake(api_key)
-        response = stake.user_balances()
-        balances = []
-        for currency in response['data']['user']['balances']:
-            balances.append({
-                'amount': currency['available']['amount'],
-                'currency': currency['available']['currency'].upper()
-            })
-        return jsonify({'balances': balances})
+     stake = Stake(api_key)
+response = stake.user_balances()
+balances = []
+for currency in response['data']['user']['balances']:
+    balances.append({
+        'amount': currency['available']['amount'],
+        'currency': currency['available']['currency'].upper()
+    })
+return jsonify({'balances': balances})
+
+# This is FAKE demo data, not real balance!
+balances = [
+    {'amount': '1.23', 'currency': 'BTC'},
+    {'amount': '400.00', 'currency': 'USDT'}
+]
+return jsonify({'balances': balances})
+
+
+
+
+
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
